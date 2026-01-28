@@ -1,0 +1,99 @@
+# Project Structure
+
+This file maintains an up-to-date list of project files and structure.
+
+## File Structure
+
+- 📁 `.github/`
+  - 📁 `.github\appmod/`
+    - 📁 `.github\appmod\appcat/`
+- 📁 `.vscode/`
+  - 📄 `.vscode\project-structure.md` (Markdown)
+- 📁 `init/`
+- 📁 `L1/`
+  - 📁 `L1\connessione-db/`
+    - 📁 `L1\connessione-db\.idea/`
+      - 📁 `L1\connessione-db\.idea\libraries/`
+        - 📄 `L1\connessione-db\.idea\libraries\mysql_connector_j_9_5_0.xml` (Unknown)
+      - 📄 `L1\connessione-db\.idea\.gitignore` (Unknown)
+      - 📄 `L1\connessione-db\.idea\copilot.data.migration.ask2agent.xml` (Unknown)
+      - 📄 `L1\connessione-db\.idea\misc.xml` (Unknown)
+      - 📄 `L1\connessione-db\.idea\modules.xml` (Unknown)
+      - 📄 `L1\connessione-db\.idea\workspace.xml` (Unknown)
+    - 📁 `L1\connessione-db\.vscode/`
+      - 📄 `L1\connessione-db\.vscode\project-structure.md` (Markdown)
+    - 📁 `L1\connessione-db\lib/`
+      - 📄 `L1\connessione-db\lib\mysql-connector-j-9.5.0.jar` (Unknown)
+    - 📁 `L1\connessione-db\src/`
+      - 📁 `L1\connessione-db\src\it/`
+        - 📁 `L1\connessione-db\src\it\corsojavadb/`
+          - 📁 `L1\connessione-db\src\it\corsojavadb\app/`
+            - 📁 `L1\connessione-db\src\it\corsojavadb\app\db/`
+              - 📄 `L1\connessione-db\src\it\corsojavadb\app\db\DbConnection.java` (Java)
+            - 📄 `L1\connessione-db\src\it\corsojavadb\app\Main.java` (Java)
+    - 📄 `L1\connessione-db\.gitignore` (Unknown)
+    - 📄 `L1\connessione-db\connessione-db.iml` (Unknown)
+- 📁 `L2/`
+  - 📁 `L2\connessione-db/`
+    - 📁 `L2\connessione-db\.idea/`
+      - 📁 `L2\connessione-db\.idea\libraries/`
+        - 📄 `L2\connessione-db\.idea\libraries\mysql_connector_j_9_5_0.xml` (Unknown)
+      - 📄 `L2\connessione-db\.idea\.gitignore` (Unknown)
+      - 📄 `L2\connessione-db\.idea\copilot.data.migration.agent.xml` (Unknown)
+      - 📄 `L2\connessione-db\.idea\copilot.data.migration.ask.xml` (Unknown)
+      - 📄 `L2\connessione-db\.idea\copilot.data.migration.ask2agent.xml` (Unknown)
+      - 📄 `L2\connessione-db\.idea\copilot.data.migration.edit.xml` (Unknown)
+      - 📄 `L2\connessione-db\.idea\misc.xml` (Unknown)
+      - 📄 `L2\connessione-db\.idea\modules.xml` (Unknown)
+      - 📄 `L2\connessione-db\.idea\workspace.xml` (Unknown)
+    - 📁 `L2\connessione-db\.vscode/`
+      - 📄 `L2\connessione-db\.vscode\project-structure.md` (Markdown)
+    - 📁 `L2\connessione-db\lib/`
+      - 📄 `L2\connessione-db\lib\mysql-connector-j-9.5.0.jar` (Unknown)
+    - 📁 `L2\connessione-db\src/`
+      - 📁 `L2\connessione-db\src\it/`
+        - 📁 `L2\connessione-db\src\it\corsojavadb/`
+          - 📁 `L2\connessione-db\src\it\corsojavadb\app/`
+            - 📁 `L2\connessione-db\src\it\corsojavadb\app\dao/`
+              - 📄 `L2\connessione-db\src\it\corsojavadb\app\dao\PizzaDao.java` (Java)
+            - 📁 `L2\connessione-db\src\it\corsojavadb\app\db/`
+              - 📄 `L2\connessione-db\src\it\corsojavadb\app\db\DbConnection.java` (Java)
+            - 📁 `L2\connessione-db\src\it\corsojavadb\app\model/`
+              - 📄 `L2\connessione-db\src\it\corsojavadb\app\model\Pizza.java` (Java)
+            - 📄 `L2\connessione-db\src\it\corsojavadb\app\Main.java` (Java)
+    - 📄 `L2\connessione-db\.gitignore` (Unknown)
+    - 📄 `L2\connessione-db\connessione-db.iml` (Unknown)
+- 📁 `L3/`
+  - 📁 `L3\connessione-db/`
+    - 📁 `L3\connessione-db\.idea/`
+      - 📁 `L3\connessione-db\.idea\libraries/`
+        - 📄 `L3\connessione-db\.idea\libraries\mysql_connector_j_9_5_0.xml` (Unknown)
+      - 📄 `L3\connessione-db\.idea\.gitignore` (Unknown)
+      - 📄 `L3\connessione-db\.idea\copilot.data.migration.agent.xml` (Unknown)
+      - 📄 `L3\connessione-db\.idea\copilot.data.migration.ask.xml` (Unknown)
+      - 📄 `L3\connessione-db\.idea\copilot.data.migration.ask2agent.xml` (Unknown)
+      - 📄 `L3\connessione-db\.idea\copilot.data.migration.edit.xml` (Unknown)
+      - 📄 `L3\connessione-db\.idea\misc.xml` (Unknown)
+      - 📄 `L3\connessione-db\.idea\modules.xml` (Unknown)
+      - 📄 `L3\connessione-db\.idea\workspace.xml` (Unknown)
+    - 📁 `L3\connessione-db\.vscode/`
+      - 📄 `L3\connessione-db\.vscode\project-structure.md` (Markdown)
+    - 📁 `L3\connessione-db\lib/`
+      - 📄 `L3\connessione-db\lib\mysql-connector-j-9.5.0.jar` (Unknown)
+    - 📁 `L3\connessione-db\src/`
+      - 📁 `L3\connessione-db\src\it/`
+        - 📁 `L3\connessione-db\src\it\corsojavadb/`
+          - 📁 `L3\connessione-db\src\it\corsojavadb\app/`
+            - 📁 `L3\connessione-db\src\it\corsojavadb\app\dao/`
+              - 📄 `L3\connessione-db\src\it\corsojavadb\app\dao\PizzaDao.java` (Java)
+            - 📁 `L3\connessione-db\src\it\corsojavadb\app\db/`
+              - 📄 `L3\connessione-db\src\it\corsojavadb\app\db\DbConnection.java` (Java)
+            - 📁 `L3\connessione-db\src\it\corsojavadb\app\model/`
+              - 📄 `L3\connessione-db\src\it\corsojavadb\app\model\Pizza.java` (Java)
+            - 📄 `L3\connessione-db\src\it\corsojavadb\app\Main.java` (Java)
+    - 📄 `L3\connessione-db\.gitignore` (Unknown)
+    - 📄 `L3\connessione-db\connessione-db.iml` (Unknown)
+- 📄 `docker-compose.yml` (Unknown)
+
+---
+Last updated: 2026-01-28T10:20:22.917Z
