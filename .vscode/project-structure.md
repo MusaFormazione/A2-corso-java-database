@@ -129,7 +129,47 @@ This file maintains an up-to-date list of project files and structure.
             - 📄 `L4\connessione-db\src\it\corsojavadb\app\Main.java` (Java)
     - 📄 `L4\connessione-db\.gitignore` (Unknown)
     - 📄 `L4\connessione-db\connessione-db.iml` (Unknown)
+- 📁 `L5/`
+  - 📁 `L5\connessione-db/`
+    - 📁 `L5\connessione-db\.idea/`
+      - 📁 `L5\connessione-db\.idea\libraries/`
+        - 📄 `L5\connessione-db\.idea\libraries\mysql_connector_j_9_5_0.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\.gitignore` (Unknown)
+      - 📄 `L5\connessione-db\.idea\copilot.data.migration.agent.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\copilot.data.migration.ask.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\copilot.data.migration.ask2agent.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\copilot.data.migration.edit.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\misc.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\modules.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\vcs.xml` (Unknown)
+      - 📄 `L5\connessione-db\.idea\workspace.xml` (Unknown)
+    - 📁 `L5\connessione-db\.vscode/`
+      - 📄 `L5\connessione-db\.vscode\project-structure.md` (Markdown)
+    - 📁 `L5\connessione-db\lib/`
+      - 📄 `L5\connessione-db\lib\mysql-connector-j-9.5.0.jar` (Unknown)
+    - 📁 `L5\connessione-db\src/`
+      - 📁 `L5\connessione-db\src\it/`
+        - 📁 `L5\connessione-db\src\it\corsojavadb/`
+          - 📁 `L5\connessione-db\src\it\corsojavadb\app/`
+            - 📁 `L5\connessione-db\src\it\corsojavadb\app\dao/`
+              - 📄 `L5\connessione-db\src\it\corsojavadb\app\dao\PizzaDao.java` (Java)
+            - 📁 `L5\connessione-db\src\it\corsojavadb\app\db/`
+              - 📄 `L5\connessione-db\src\it\corsojavadb\app\db\DbConnection.java` (Java)
+            - 📁 `L5\connessione-db\src\it\corsojavadb\app\model/`
+              - 📄 `L5\connessione-db\src\it\corsojavadb\app\model\Pizza.java` (Java)
+            - 📁 `L5\connessione-db\src\it\corsojavadb\app\setup/`
+              - 📁 `L5\connessione-db\src\it\corsojavadb\app\setup\migrations/`
+                - 📄 `L5\connessione-db\src\it\corsojavadb\app\setup\migrations\V001_CreatePizzaTable.java` (Java)
+              - 📄 `L5\connessione-db\src\it\corsojavadb\app\setup\Migration.java` (Java)
+              - 📄 `L5\connessione-db\src\it\corsojavadb\app\setup\MigrationRunner.java` (Java)
+            - 📁 `L5\connessione-db\src\it\corsojavadb\app\util/`
+              - 📄 `L5\connessione-db\src\it\corsojavadb\app\util\CsvExporter.java` (Java)
+              - 📄 `L5\connessione-db\src\it\corsojavadb\app\util\CsvImporter.java` (Java)
+            - 📄 `L5\connessione-db\src\it\corsojavadb\app\Main.java` (Java)
+            - 📄 `L5\connessione-db\src\it\corsojavadb\app\MainInterattivo.java` (Java)
+    - 📄 `L5\connessione-db\.gitignore` (Unknown)
+    - 📄 `L5\connessione-db\connessione-db.iml` (Unknown)
 - 📄 `docker-compose.yml` (Unknown)
 
 ---
-Last updated: 2026-01-28T15:02:50.586Z
+Last updated: 2026-02-02T15:06:14.365Z
