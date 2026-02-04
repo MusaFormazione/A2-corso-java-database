@@ -34,8 +34,9 @@ public class CsvImporter {
      * @return il numero di record importati
      * @throws IOException se ci sono problemi nella lettura del file
      * @throws SQLException se ci sono problemi con il database
+     * @throws ClassNotFoundException se il driver jcbc non viene trovato
      */
-    public static int importPizzasFromCsv(String filePath) throws IOException, SQLException{
+    public static int importPizzasFromCsv(String filePath) throws IOException, SQLException, ClassNotFoundException{
         return importPizzasFromCsv(filePath, true);
         // Questo metodo è un esempio di OVERLOADING(sovraccarico) dei metodi.
     }
@@ -48,8 +49,9 @@ public class CsvImporter {
      * @return il numero di record importati
      * @throws IOException se ci sono problemi nella lettura del file
      * @throws SQLException se ci sono problemi con il database
+     * @throws ClassNotFoundException se il driver jdbc non viene trovato
      */
-    public static int importPizzasFromCsv(String filePath, boolean hasHeader) throws IOException, SQLException{
+    public static int importPizzasFromCsv(String filePath, boolean hasHeader) throws IOException, SQLException, ClassNotFoundException{
         int recordImported = 0;
         int lineNumber = 0;
 
@@ -57,9 +59,9 @@ public class CsvImporter {
         System.out.println("File: " + filePath);
         System.out.println("==========================\n");
 
-        try(Connection conn = DbConnection.open()){
+        try(Connection conn = DbConnection.open();BufferedReader reader = new BufferedReader(new FileReader(filePath))){
 
-            BufferedReader reader = new BufferedReader(new FileReader(filePath)){}
+
 
             PizzaDao pizzaDao = new PizzaDao(conn);;
             String line;
