@@ -214,7 +214,52 @@ This file maintains an up-to-date list of project files and structure.
             - 📄 `L6\connessione-db\src\it\corsojavadb\app\MainInterattivo.java` (Java)
     - 📄 `L6\connessione-db\.gitignore` (Unknown)
     - 📄 `L6\connessione-db\connessione-db.iml` (Unknown)
+- 📁 `L7/`
+  - 📁 `L7\connessione-db/`
+    - 📁 `L7\connessione-db\.github/`
+      - 📁 `L7\connessione-db\.github\appmod/`
+        - 📁 `L7\connessione-db\.github\appmod\appcat/`
+    - 📁 `L7\connessione-db\.idea/`
+      - 📁 `L7\connessione-db\.idea\libraries/`
+        - 📄 `L7\connessione-db\.idea\libraries\mysql_connector_j_9_5_0.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\.gitignore` (Unknown)
+      - 📄 `L7\connessione-db\.idea\copilot.data.migration.agent.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\copilot.data.migration.ask.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\copilot.data.migration.ask2agent.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\copilot.data.migration.edit.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\misc.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\modules.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\vcs.xml` (Unknown)
+      - 📄 `L7\connessione-db\.idea\workspace.xml` (Unknown)
+    - 📁 `L7\connessione-db\.vscode/`
+      - 📄 `L7\connessione-db\.vscode\project-structure.md` (Markdown)
+    - 📁 `L7\connessione-db\lib/`
+      - 📄 `L7\connessione-db\lib\mysql-connector-j-9.5.0.jar` (Unknown)
+    - 📁 `L7\connessione-db\src/`
+      - 📁 `L7\connessione-db\src\it/`
+        - 📁 `L7\connessione-db\src\it\corsojavadb/`
+          - 📁 `L7\connessione-db\src\it\corsojavadb\app/`
+            - 📁 `L7\connessione-db\src\it\corsojavadb\app\dao/`
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\dao\PizzaDao.java` (Java)
+            - 📁 `L7\connessione-db\src\it\corsojavadb\app\db/`
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\db\DbConnection.java` (Java)
+            - 📁 `L7\connessione-db\src\it\corsojavadb\app\model/`
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\model\Pizza.java` (Java)
+            - 📁 `L7\connessione-db\src\it\corsojavadb\app\setup/`
+              - 📁 `L7\connessione-db\src\it\corsojavadb\app\setup\migrations/`
+                - 📄 `L7\connessione-db\src\it\corsojavadb\app\setup\migrations\V001_CreatePizzaTable.java` (Java)
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\setup\Migration.java` (Java)
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\setup\MigrationRunner.java` (Java)
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\setup\TestResetDatabase.java` (Java)
+            - 📁 `L7\connessione-db\src\it\corsojavadb\app\util/`
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\util\CsvExporter.java` (Java)
+              - 📄 `L7\connessione-db\src\it\corsojavadb\app\util\CsvImporter.java` (Java)
+            - 📄 `L7\connessione-db\src\it\corsojavadb\app\Main.java` (Java)
+            - 📄 `L7\connessione-db\src\it\corsojavadb\app\MainInterattivo.java` (Java)
+    - 📄 `L7\connessione-db\.gitignore` (Unknown)
+    - 📄 `L7\connessione-db\connessione-db.iml` (Unknown)
+    - 📄 `L7\connessione-db\pizzas_esempio.csv` (Unknown)
 - 📄 `docker-compose.yml` (Unknown)
 
 ---
-Last updated: 2026-02-04T15:03:07.473Z
+Last updated: 2026-02-09T16:01:09.112Z
