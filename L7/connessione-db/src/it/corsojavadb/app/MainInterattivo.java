@@ -11,6 +11,8 @@ import it.corsojavadb.app.setup.Migration;
 import it.corsojavadb.app.setup.MigrationRunner;
 import it.corsojavadb.app.setup.migrations.V001_CreatePizzaTable;
 import it.corsojavadb.app.util.CsvImporter;
+import it.corsojavadb.app.util.CsvExporter;
+import it.corsojavadb.app.util.ConsoleUtils;
 
 
 public class MainInterattivo {
@@ -39,9 +41,9 @@ public class MainInterattivo {
 
                 //leggiamo la scelta dell'utente
                 System.out.println("Scelta: ");
-                int scelta = leggiIntero();
+                int scelta = ConsoleUtils.leggiIntero(scanner);
 
-                System.out.println();//riga vuota per leggibilitò
+                System.out.println();//riga vuota per leggibiltò
 
                 switch (scelta){
                     case 1:
@@ -133,74 +135,194 @@ public class MainInterattivo {
      * CREATE - Inserisce una nuova pizza nel database
      */
     private static void inserisciPizza(PizzaDao pizzaDao) {
+        try {
+            System.out.println("--- INSERISCI NUOVA PIZZA ---");
 
+            // Leggiamo i dati della pizza dall'utente
+            System.out.print("Nome: ");
+            String nome = scanner.nextLine();
+
+            System.out.print("Ingredienti: ");
+            String ingredienti = scanner.nextLine();
+
+            System.out.print("Prezzo: ");
+            double prezzo = ConsoleUtils.leggiDouble(scanner);
+
+            // Creiamo l'oggetto Pizza
+            Pizza pizza = new Pizza(nome, ingredienti, prezzo);
+
+            // Inseriamo nel database
+            int id = pizzaDao.create(pizza);
+
+            System.out.println("✅ Pizza inserita con successo! ID assegnato: " + id);
+
+        } catch (Exception e) {
+            System.err.println("❌ Errore durante l'inserimento: " + e.getMessage());
+        }
     }
 
     /**
      * READ ALL - Visualizza tutte le pizze del database
      */
     private static void visualizzaTutteLePizze(PizzaDao pizzaDao) {
+        try {
+            System.out.println("--- TUTTE LE PIZZE ---");
 
+            // Prendiamo tutte le pizze
+            List<Pizza> pizze = pizzaDao.getAll();
+
+            // Se non ci sono pizze
+            if (pizze.isEmpty()) {
+                System.out.println("ℹ️  Nessuna pizza presente nel database.");
+                return;
+            }
+
+            // Stampiamo ogni pizza
+            for (Pizza pizza : pizze) {
+                System.out.println(pizza.getId() + ", " + pizza.getNome() + ", " + pizza.getIngredienti() + ", " + pizza.getPrezzo());
+                System.out.println("--------------------------------------------------");
+            }
+
+            System.out.println("Totale: " + pizze.size() + " pizze");
+
+        } catch (Exception e) {
+            System.err.println("❌ Errore durante la visualizzazione: " + e.getMessage());
+        }
     }
 
     /**
      * READ BY ID - Cerca una pizza specifica per ID
      */
     private static void cercaPizzaPerID(PizzaDao pizzaDao) {
+        try {
+            System.out.println("--- CERCA PIZZA PER ID ---");
 
+            System.out.print("Inserisci l'ID della pizza: ");
+            int id = ConsoleUtils.leggiIntero(scanner);
+
+            // Cerchiamo la pizza
+            Pizza pizza = pizzaDao.findById(id);
+
+            // Se la pizza non esiste
+            if (pizza == null) {
+                System.out.println("❌ Nessuna pizza trovata con ID " + id);
+                return;
+            }
+
+            // Stampiamo i dettagli della pizza
+            System.out.println("\n✅ Pizza trovata:");
+            System.out.println("   ID: " + pizza.getId());
+            System.out.println("   Nome: " + pizza.getNome());
+            System.out.println("   Ingredienti: " + pizza.getIngredienti());
+            System.out.println("   Prezzo: " + pizza.getPrezzo() + "€");
+
+        } catch (Exception e) {
+            System.err.println("❌ Errore durante la ricerca: " + e.getMessage());
+        }
     }
 
     /**
      * UPDATE - Modifica una pizza esistente
      */
     private static void modificaPizza(PizzaDao pizzaDao) {
+        try {
+            System.out.println("--- MODIFICA PIZZA ---");
 
+            System.out.print("Inserisci l'ID della pizza da modificare: ");
+            int id = ConsoleUtils.leggiIntero(scanner);
+
+            // Cerchiamo la pizza
+            Pizza pizza = pizzaDao.findById(id);
+
+            if (pizza == null) {
+                System.out.println("❌ Nessuna pizza trovata con ID " + id);
+                return;
+            }
+
+            // Mostriamo i dati attuali
+            System.out.println("\nDati attuali:");
+            System.out.println("   Nome: " + pizza.getNome());
+            System.out.println("   Ingredienti: " + pizza.getIngredienti());
+            System.out.println("   Prezzo: " + pizza.getPrezzo() + "€");
+
+            // Chiediamo i nuovi dati
+            System.out.println("\nInserisci i nuovi dati (premi INVIO per mantenere il valore corrente):");
+
+            System.out.print("Nuovo nome: ");
+            String nome = scanner.nextLine();
+            if (!nome.isEmpty()) {
+                pizza.setNome(nome);
+            }
+
+            System.out.print("Nuovi ingredienti: ");
+            String ingredienti = scanner.nextLine();
+            if (!ingredienti.isEmpty()) {
+                pizza.setIngredienti(ingredienti);
+            }
+
+            System.out.print("Nuovo prezzo: ");
+            String prezzoStr = scanner.nextLine();
+            if (!prezzoStr.isEmpty()) {
+                double prezzo = Double.parseDouble(prezzoStr);
+                pizza.setPrezzo(prezzo);
+            }
+
+            // Aggiorniamo nel database
+            boolean aggiornato = pizzaDao.update(pizza);
+
+            if (aggiornato) {
+                System.out.println("✅ Pizza aggiornata con successo!");
+            } else {
+                System.out.println("❌ Aggiornamento fallito!");
+            }
+
+        } catch (Exception e) {
+            System.err.println("❌ Errore durante la modifica: " + e.getMessage());
+        }
     }
 
     /**
      * DELETE - Elimina una pizza dal database
      */
     private static void eliminaPizza(PizzaDao pizzaDao) {
+        try {
+            System.out.println("--- ELIMINA PIZZA ---");
 
-    }
+            System.out.print("Inserisci l'ID della pizza da eliminare: ");
+            int id = ConsoleUtils.leggiIntero(scanner);
 
-    // ========== METODI HELPER ==========
+            // Prima mostriamo la pizza da eliminare
+            Pizza pizza = pizzaDao.findById(id);
 
-    /**
-     * lEGGE UN NUMERO INTERO DALLO SCANNER GESTENDO GLI ERRORI
-     */
-    private static int leggiIntero(){
-        while(true){
-            try{
-                int numero = Integer.parseInt(scanner.nextLine());
-                return numero;
-            }catch(NumberFormatException e){
-                System.out.println("Input non valido. Inserisci un numero intero: ");
+            if (pizza == null) {
+                System.out.println("❌ Nessuna pizza trovata con ID " + id);
+                return;
             }
+
+            System.out.println("\nSei sicuro di voler eliminare questa pizza?");
+            System.out.println("   " + pizza);
+
+            System.out.print("Conferma (S/N): ");
+            String conferma = scanner.nextLine();
+
+            // Se l'utente conferma
+            if (ConsoleUtils.consoleConfirm(conferma)) {
+                boolean eliminato = pizzaDao.delete(id);
+
+                if (eliminato) {
+                    System.out.println("✅ Pizza eliminata con successo!");
+                } else {
+                    System.out.println("❌ Eliminazione fallita!");
+                }
+            } else {
+                System.out.println("ℹ️  Operazione annullata.");
+            }
+
+        } catch (Exception e) {
+            System.err.println("❌ Errore durante l'eliminazione: " + e.getMessage());
         }
     }
 
-    /**
-     * Legge un numero decimale dallo scanner, gestendo gli errori
-     */
-    private static double leggiDouble(){
-        while(true){
-            try{
-                double numero = Double.parseDouble(scanner.nextLine());
-                return numero;
-            }catch(NumberFormatException e){
-                System.out.println("Input non valido. Inserisci un numero decimale: ");
-            }
-        }
-    }
-
-    /**
-     * Taglia una stringa
-     */
-
-
-    // ========== FUNZIONALITÀ AVANZATE ==========
-    // Questa sezione contiene funzionalità che verranno spiegate in lezioni successive
 
     /**
      * IMPORT CSV - Importa pizze da un file CSV
@@ -218,7 +340,7 @@ public class MainInterattivo {
             System.out.println("0. Torna al menu principale");
 
             System.out.println("\nScelta:");
-            int scelta = leggiIntero();
+            int scelta = ConsoleUtils.leggiIntero(scanner);
 
             System.out.println();//riga vuota per leggibilità
 
@@ -229,7 +351,7 @@ public class MainInterattivo {
 
                     System.out.println("Il file ha una riga di intestazione? (S/N): ");
                     String hasHeaderString = scanner.nextLine();
-                    boolean hasHeader = hasHeaderString.equalsIgnoreCase("S") || hasHeaderString.equalsIgnoreCase("SI");
+                    boolean hasHeader = ConsoleUtils.consoleConfirm(hasHeaderString);
 
                     int recordsImported = CsvImporter.importPizzasFromCsv(filePath, hasHeader);
 
@@ -277,7 +399,26 @@ public class MainInterattivo {
      * dal database in un file CSV per backup o analisi.
      */
     private static void esportaPizzeInCsv() {
+        try {
+            printFormattedHeadline("ESPORTAZIONE CSV - TUTTE LE PIZZE");
 
+            // Nome file con timestamp per evitare sovrascritture accidentali
+            String filePath = "pizzas_export_" + System.currentTimeMillis() + ".csv";
+
+            int recordsExported = CsvExporter.exportPizzasToCsv(filePath, true);
+
+            if (recordsExported > 0) {
+                System.out.println("\n✅ Esportazione completata con successo!");
+                System.out.println("   Pizze esportate: " + recordsExported);
+                System.out.println("   File: " + filePath);
+            } else {
+                System.out.println("\n⚠️  Nessuna pizza è stata esportata (database vuoto).");
+            }
+
+        } catch (Exception e) {
+            System.err.println("❌ Errore durante l'esportazione CSV: " + e.getMessage());
+            System.err.println("   Verifica di avere i permessi di scrittura nella directory.");
+        }
     }
 
 
@@ -306,7 +447,7 @@ public class MainInterattivo {
             System.out.print("\nVuoi procedere con l'esecuzione? (S/N): ");
             String conferma = scanner.nextLine();
 
-            if (conferma.equalsIgnoreCase("S") || conferma.equalsIgnoreCase("SI")) {
+            if (ConsoleUtils.consoleConfirm(conferma)) {
                 // Esegui le migrazioni
                 MigrationRunner.runMigrations(migrations);
                 System.out.println("\n✅ Processo di migrazione completato!");
@@ -342,7 +483,7 @@ public class MainInterattivo {
             System.out.print("Sei sicuro di voler procedere con il rollback? (S/N): ");
             String conferma = scanner.nextLine();
 
-            if (conferma.equalsIgnoreCase("S") || conferma.equalsIgnoreCase("SI")) {
+            if (ConsoleUtils.consoleConfirm(conferma)) {
                 System.out.print("Conferma nuovamente digitando 'ROLLBACK': ");
                 String confermaFinale = scanner.nextLine();
 

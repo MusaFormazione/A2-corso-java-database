@@ -58,7 +58,7 @@ public class CsvExporter {
 
         try(
                 Connection conn = DbConnection.open();
-                PrintWriter writer = new PrintWriter(new FileWriter(filePath))
+                PrintWriter writer = new PrintWriter(new FileWriter(filePath), true)
             ){
 
             PizzaDao pizzaDao = new PizzaDao(conn);
@@ -70,6 +70,7 @@ public class CsvExporter {
 
             if(includeHeader){
                 writer.println(DEFAULT_HEADER);
+                writer.flush();
                 System.out.println("Intestazione Scritta: "
                 + DEFAULT_HEADER);
             }
@@ -77,6 +78,7 @@ public class CsvExporter {
             for(Pizza pizza : pizzas){
                 String csvLine = buildCSVLine(pizza);
                 writer.println(csvLine);
+                writer.flush();
                 recordsExported++;
                 System.out.println("Esportata pizza #" + pizza.getId() + ": " + pizza.getNome() + " (€ " + pizza.getPrezzo() + ")");
             }
@@ -115,17 +117,19 @@ public class CsvExporter {
         System.out.println("==========================\n");
 
         try(
-                PrintWriter writer = new PrintWriter(new FileWriter(filePath))
+                PrintWriter writer = new PrintWriter(new FileWriter(filePath), true)
         ){
 
             if(includeHeader){
                 writer.println(DEFAULT_HEADER);
+                writer.flush();
                 System.out.println("Intestazione Scritta: " + DEFAULT_HEADER);
             }
 
             for(Pizza pizza : pizzas){
                 String csvLine = buildCSVLine(pizza);
                 writer.println(csvLine);
+                writer.flush();
                 recordsExported++;
                 System.out.println("Esportata pizza #" + pizza.getId() + ": " + pizza.getNome() + " (€ " + pizza.getPrezzo() + ")");
             }
@@ -144,6 +148,36 @@ public class CsvExporter {
     }
 
     /**
+     * Esporta le pizze con prezzo >= minPrice in un file CSV
+     */
+    public static int exportPizzasByMinPrice(String filePath, double minPrice, boolean includeHeader) throws SQLException, IOException, ClassNotFoundException{
+        try (
+                Connection conn = DbConnection.open()
+        ){
+            PizzaDao pizzaDao = new PizzaDao(conn);
+            List<Pizza> all = pizzaDao.getAll();
+            List<Pizza> filtered = new java.util.ArrayList<>();
+            for(Pizza p : all){
+                if(p.getPrezzo() >= minPrice) filtered.add(p);
+            }
+            if(filtered.isEmpty()) return 0;
+            return exportPizzaListToCsv(filePath, filtered, includeHeader);
+        }
+    }
+
+    /**
+     * Crea un file di backup nella directory specificata e ritorna il percorso
+     */
+    public static String createBackup(String backupDir) throws SQLException, IOException, ClassNotFoundException{
+        if(backupDir == null || backupDir.trim().isEmpty()) backupDir = ".";
+        String sep = System.getProperty("file.separator");
+        if(!(backupDir.endsWith(sep) || backupDir.endsWith("/"))) backupDir = backupDir + sep;
+        String backupPath = backupDir + "pizzas_backup_" + System.currentTimeMillis() + ".csv";
+        exportPizzasToCsv(backupPath, true);
+        return backupPath;
+    }
+
+    /**
      * Esporta una singola pizza in formato CSV (aggiunge al file esistente)
      *
      * @param filePath il percorso del file CSV
@@ -153,9 +187,10 @@ public class CsvExporter {
      */
     public static void appendPizzaToCsv(String filePath, Pizza pizza, boolean append) throws IOException {
 
-        try(PrintWriter writer = new PrintWriter(new FileWriter(filePath, append))){
+        try(PrintWriter writer = new PrintWriter(new FileWriter(filePath, append), true)){
             String csvLine = buildCSVLine(pizza);
             writer.println(csvLine);
+            writer.flush();
             System.out.println("Pizza aggiunta al file");
         }
 
