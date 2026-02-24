@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>hibernate-crud</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- Keep existing compiler settings (project uses Java 21 currently) -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- JavaFX and other versions -->
+        <javafx.version>17.0.2</javafx.version>
+        <slf4j.version>1.7.36</slf4j.version>
+    </properties>
+
+
+    <dependencies>
+        <!-- Hibernate (kept existing modern version) -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>7.2.4.Final</version>
+        </dependency>
+
+        <!-- MySQL connector -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.3.0</version>
+        </dependency>
+
+        <!-- Jakarta Persistence API (used by the entities in the project) -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+        <!-- SLF4J simple logger for development -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- JavaFX dependencies (controls + fxml) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>win</classifier>
+        </dependency>
+
+    </dependencies>
+
+    <!--
+        Sezione <build>:
+        Questo blocco configura il processo di build del progetto Maven.
+        Al suo interno si dichiarano i plugin (es. maven-compiler-plugin, javafx-maven-plugin,
+        exec-maven-plugin) e la loro configurazione, che servono a:
+          - compilare il codice sorgente con la versione di Java desiderata,
+          - eseguire goal specifici (ad esempio "mvn javafx:run" per avviare l'app JavaFX),
+          - personalizzare il packaging, la generazione di artefatti e altre fasi del ciclo di vita di Maven.
+        Il contenuto di <build> non aggiunge dipendenze di runtime: definisce come il progetto viene
+        costruito, impacchettato e avviato durante le varie fasi di build.
+        È principalmente documentazione e configurazione per l'ambiente di sviluppo/CI.
+    -->
+    <build>
+        <plugins>
+            <!-- Compiler plugin (keeps Java version) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- JavaFX Maven Plugin to run the app with mvn javafx:run -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>it.corsojavadb.ui.GuiApp</mainClass>
+                    <launcher>jar</launcher>
+                </configuration>
+            </plugin>
+
+            <!-- Exec plugin (utile per configurare una Run Configuration in IDE) -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>it.corsojavadb.ui.GuiApp</mainClass>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>

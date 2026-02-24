@@ -1,13 +1,13 @@
 package it.corsojavadb;
 
-import it.corsojavadb.db.DbConnection;
+import java.math.BigDecimal;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import it.corsojavadb.db.DbConnection;
 import it.corsojavadb.model.Pizza;
-
-import java.math.BigDecimal;
 
 public class Main {
 
@@ -74,7 +74,7 @@ public class Main {
         }finally {
             //Chiudo sempre la connessione al db quando finisce il programma
             System.out.println("Chiudo la connessione al DB...");
-            DbConnection.closeConnection();;
+            DbConnection.closeConnection();
         }
 
     }

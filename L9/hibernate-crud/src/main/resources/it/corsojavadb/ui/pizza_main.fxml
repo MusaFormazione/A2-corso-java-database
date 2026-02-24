@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Import delle classi JavaFX necessarie -->
+<?import javafx.geometry.Insets?>      <!-- Per i margini/padding -->
+<?import javafx.scene.control.*?>      <!-- Per Button, TextField, TableView, ecc. -->
+<?import javafx.scene.layout.*?>       <!-- Per BorderPane, VBox, HBox, ecc. -->
+
+<!--  File FXML per l'interfaccia grafica dell'applicazione Gestione Pizze.
+
+    COS'È FXML?
+    FXML è un formato XML usato da JavaFX per descrivere l'interfaccia grafica.
+    È simile all'HTML per le pagine web: descrive quali componenti ci sono,
+    come sono disposti, che proprietà hanno, ecc.
+
+    VANTAGGI DI FXML:
+    - Separa l'interfaccia (XML) dalla logica (Java)
+    - Più facile da leggere e modificare rispetto al codice Java
+    - Può essere creato con Scene Builder (editor visuale)
+    - Facilita il lavoro in team (designer e programmatori separati)
+
+    COLLEGAMENTO CON JAVA:
+    - fx:controller="it.corsojavadb.ui.PizzaController" collega questo FXML al controller
+    - fx:id="nomeField" collega un componente a una variabile @FXML nel controller
+    - onAction="#onCreate" collega un evento (click) a un metodo del controller
+-->
+<!--
+    BorderPane: layout principale che divide la finestra in 5 zone:
+    - top (in alto)
+    - bottom (in basso)
+    - left (a sinistra)
+    - right (a destra)
+    - center (al centro)
+
+    In questa applicazione usiamo solo la zona CENTER.
+
+    xmlns:fx: specifica il namespace per le funzionalità FXML
+    fx:controller: collega questo FXML alla classe PizzaController
+-->
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.corsojavadb.ui.PizzaController">
+
+    <!--
+        <center>: zona centrale del BorderPane
+        Qui mettiamo tutto il contenuto dell'applicazione
+    -->
+    <center>
+
+        <!--
+            VBox: contenitore verticale che dispone i suoi figli uno sotto l'altro
+            spacing="8": spazio di 8 pixel tra un componente e l'altro
+        -->
+        <VBox spacing="8">
+
+         <!--
+                Padding: spazio interno tra il bordo del VBox e il suo contenuto
+                top, right, bottom, left: margini su tutti i lati (10 pixel)
+
+                NOTA: In FXML, Insets deve essere specificato come tag separato,
+                non come attributo semplice (es. padding="10" NON funziona)
+            -->
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!--
+                TableView: tabella per visualizzare le pizze
+                fx:id="tablePizze": collega questa tabella alla variabile nel controller
+                prefHeight="300": altezza preferita di 300 pixel
+
+                GENERIC TYPE: TableView<Pizza> nel controller specifica che ogni riga contiene un oggetto Pizza
+            -->
+            <TableView fx:id="tablePizze" prefHeight="300">
+                 <!--
+                    <columns>: contenitore delle colonne della tabella
+                    Ogni TableColumn rappresenta una colonna
+                -->
+                <columns>
+                    <!--
+                        TableColumn: singola colonna della tabella
+                        fx:id: collega al controller per configurare cosa mostrare
+                        text: intestazione della colonna (visibile all'utente)
+                        prefWidth: larghezza preferita in pixel
+
+                        NOTA: Il contenuto di ogni colonna viene configurato nel controller
+                        con setCellValueFactory() che specifica quale dato mostrare
+                    -->
+                    <TableColumn fx:id="idCol" text="ID" prefWidth="60" />
+                    <TableColumn fx:id="nomeCol" text="Nome" prefWidth="200" />
+                    <TableColumn fx:id="ingredientiCol" text="Ingredienti" prefWidth="300" />
+                    <TableColumn fx:id="prezzoCol" text="Prezzo" prefWidth="100" />
+                </columns>
+            </TableView>
+
+            <!--
+                HBox: contenitore orizzontale che dispone i suoi figli uno accanto all'altro
+                spacing="8": spazio di 8 pixel tra i componenti
+
+                Questo HBox contiene 3 VBox (uno per ogni campo di input)
+            -->
+            <HBox spacing="8">
+
+                <VBox spacing="6">
+                    <!--
+                        Label: etichetta di testo statico
+                        text: il testo visualizzato ("Nome")
+                    -->
+                    <Label text="Nome" />
+                    <!--
+                        TextField: campo di testo modificabile dall'utente
+                        fx:id="nomeField": collega al controller per leggere/scrivere il valore
+
+                        Nel controller possiamo fare:
+                        - nomeField.getText() per leggere
+                        - nomeField.setText("...") per scrivere
+                        - nomeField.clear() per svuotare
+                    -->
+                    <TextField fx:id="nomeField" />
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Ingredienti" />
+                    <TextField fx:id="ingredientiField" />
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Prezzo" />
+                    <TextField fx:id="prezzoField" />
+                </VBox>
+
+            </HBox>
+
+            <HBox spacing="8">
+                <!--
+                    Button: pulsante cliccabile
+                    fx:id: collega al controller (opzionale se non serve modificarlo dal codice)
+                    text: testo visualizzato sul pulsante
+                    onAction: specifica quale metodo del controller chiamare quando viene cliccato
+
+                    IMPORTANTE: Il metodo deve esistere nel controller ed essere annotato con @FXML
+                    Esempio: @FXML public void onCreate() { ... }
+
+                    Il simbolo # indica che "onCreate" è un metodo del controller
+                -->
+                <Button fx:id="createBtn" text="Create" onAction="#onCreate" />
+                <Button fx:id="updateBtn" text="Update" onAction="#onUpdate" />
+                <Button fx:id="deleteBtn" text="Delete" onAction="#onDelete" />
+            </HBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
