@@ -34,8 +34,12 @@ public class GuiApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        // FXMLLoader.load() carica il file FXML e lo converte in oggetti Java
+        // getClass().getResource() cerca il file nel classpath (nelle resources)
+        // Il path "/it/corsojavadb/ui/pizza_main.fxml" corrisponde alla cartella resources
         Parent root = FXMLLoader.load(getClass().getResource("/it/corsojavadb/ui/pizza_main.fxml"));
 
+        // Impostiamo il titolo della finestra (appare nella barra del titolo)
         primaryStage.setTitle("Gestione Pizze - Hibernate + JavaFX");
 
         //Creo una nuova scene con il contenuto del file FXML
